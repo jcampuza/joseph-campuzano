@@ -1,5 +1,10 @@
 ---
-{ title: 'Intro', excert: 'A little about myself', date: '11/14/2021', tags: ['Intro', 'Personal'] }
+{
+  title: 'Intro',
+  excert: 'A little about myself',
+  date: '2021-11-14T21:56:14.239Z',
+  tags: ['Intro', 'Personal'],
+}
 ---
 
 Welcome to my humble blog.

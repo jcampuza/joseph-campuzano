@@ -10,9 +10,15 @@
     "pre-commit": "npm run lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "gray-matter": "^4.0.3",
     "next": "12.0.3",
+    "node-html-parser": "^1.4.9",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "remark": "^14.0.1",
+    "remark-html": "^15.0.0"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.3.0",

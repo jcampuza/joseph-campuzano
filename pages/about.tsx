@@ -1,8 +1,9 @@
 import NextHead from 'next/head';
 import { ReactElement } from 'react';
 import { Layout } from '../components/Layout';
+import { NextPageWithLayout } from './_app';
 
-const Index = () => {
+const Index: NextPageWithLayout = () => {
   return (
     <>
       <NextHead>
@@ -35,6 +36,12 @@ const Index = () => {
       </div>
     </>
   );
+};
+
+Index.getMeta = (props) => {
+  return {
+    description: 'About Joseph Campuzano',
+  };
 };
 
 Index.getLayout = (page: ReactElement) => {

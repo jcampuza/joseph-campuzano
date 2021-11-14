@@ -1,7 +1,7 @@
 ---
 {
   title: 'Intro',
-  excert: 'A little about myself',
+  excert: 'My name is Joseph. I think about a lot of things, just like everybody else. But recently I thought I might as well write down the things I think of that I consider important...',
   date: '2021-11-14T21:56:14.239Z',
   tags: ['Intro', 'Personal'],
 }

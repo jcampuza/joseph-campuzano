@@ -43,7 +43,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
           <PostDetails
             className="mb-2"
             timeToReadMins={props.post.timeToReadMins}
-            timestamp={props.post.timeToReadMins}
+            timestamp={props.post.timestamp}
           />
 
           <PostTags tags={props.post.tags} />

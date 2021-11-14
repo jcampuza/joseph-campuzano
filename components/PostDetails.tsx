@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { cn } from '../lib/cn';
 import { FCWithClassName } from '../lib/types';
 

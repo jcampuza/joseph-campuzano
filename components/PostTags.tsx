@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { FCWithClassName } from '../lib/types';
 
 interface PostTagsProps {

@@ -10,7 +10,7 @@ const Index: NextPageWithLayout = () => {
         <title>About | Joseph Campuzano</title>
       </NextHead>
       <div className="font-sans">
-        <h2 className="font-mono text-xl mb-4">About Me</h2>
+        <h2 className="font-mono text-2xl mb-4">About Me</h2>
         <main className="space-y-4">
           <p>
             Hi, I&apos;m Joseph{' '}

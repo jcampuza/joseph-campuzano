@@ -26,15 +26,17 @@ const Index: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> 
     return (
       <ul>
         {props.posts.map((post) => (
-          <PostSummary
-            key={post.slug}
-            title={post.title}
-            timestamp={post.timestamp}
-            excert={post.excert}
-            href={`/posts/${post.slug}`}
-            tags={post.tags}
-            timeToReadMins={post.timeToReadMins}
-          />
+          <li key={post.slug}>
+            <PostSummary
+              key={post.slug}
+              title={post.title}
+              timestamp={post.timestamp}
+              excert={post.excert}
+              href={`/posts/${post.slug}`}
+              tags={post.tags}
+              timeToReadMins={post.timeToReadMins}
+            />
+          </li>
         ))}
       </ul>
     );

@@ -6,7 +6,7 @@ import { PostTags } from './PostTags';
 interface PostSummaryProps {
   href: string;
   title: string;
-  excert: string;
+  preview: string;
   timestamp: number;
   tags: string[];
   timeToReadMins: number;
@@ -23,7 +23,7 @@ export const PostSummary: FC<PostSummaryProps> = (props) => {
         <PostDetails timeToReadMins={props.timeToReadMins} timestamp={props.timestamp} />
       </header>
 
-      <p className="text-gray-800 mb-2">{props.excert}</p>
+      <p className="text-gray-800 mb-2">{props.preview}</p>
 
       <PostTags tags={props.tags} />
     </article>

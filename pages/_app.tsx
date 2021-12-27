@@ -3,8 +3,8 @@ import NextHead from 'next/head';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { Layout } from '../components/Layout';
-import '../styles/globals.css';
 import { defaultMetadata, Meta } from '../config/meta';
+import '../styles/globals.css';
 
 export type NextPageWithLayout<T = {}> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -19,7 +19,7 @@ const defaultGetLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>;
 };
 
-function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
+const MyApp = ({ Component, pageProps, router }: AppPropsWithLayout) => {
   const renderLayout = Component.getLayout ?? defaultGetLayout;
 
   const meta = {
@@ -59,6 +59,6 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
       {renderLayout(<Component {...pageProps} />)}
     </>
   );
-}
+};
 
 export default MyApp;

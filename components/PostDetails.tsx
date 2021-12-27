@@ -7,12 +7,12 @@ interface PostDetailsProps {
 }
 
 export const PostDetails: FCWithClassName<PostDetailsProps> = (props) => {
+  const dateFormatted = new Date(props.timestamp).toLocaleDateString();
+
   return (
-    <aside className={cn('flex flex-col', props.className)}>
-      <time className="text-xs italic text-gray-700">
-        {new Date(props.timestamp).toLocaleDateString()}{' '}
-      </time>
-      <small className="italic text-gray-600">Reading Time: {props.timeToReadMins} min</small>
+    <aside className={cn(props.className)}>
+      <time className="block text-xs italic text-gray-700">{dateFormatted} </time>
+      <small className="block italic text-gray-600">Reading Time: {props.timeToReadMins} min</small>
     </aside>
   );
 };

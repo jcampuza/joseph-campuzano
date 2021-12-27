@@ -12,7 +12,8 @@ export default class _Document extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="min-h-screen bg-gray-100">
+
+        <body className="min-h-screen bg-white">
           <Main />
           <NextScript />
         </body>

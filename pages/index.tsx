@@ -31,7 +31,7 @@ const Index: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> 
               key={post.slug}
               title={post.title}
               timestamp={post.timestamp}
-              excert={post.excert}
+              preview={post.preview}
               href={`/posts/${post.slug}`}
               tags={post.tags}
               timeToReadMins={post.timeToReadMins}

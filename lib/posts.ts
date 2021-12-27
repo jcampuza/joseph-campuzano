@@ -5,13 +5,28 @@ import { mdToHtml } from './mdToHtml';
 import { omit } from './obj';
 import { readingTimeMins } from './readingTime';
 
+export interface Post {
+  html: string;
+  timeToReadMins: number;
+  slug: string;
+  timestamp: number;
+  preview: string;
+  title: string;
+  tags: string[];
+}
+
 const postsDir = path.join(process.cwd(), '_posts');
 
-export const parseFrontMatter = (data: Record<string, any>) => {
+export const parsePostFromFile = async (file: string): Promise<Post> => {
+  const rawContent = fs.readFileSync(path.join(postsDir, file), 'utf-8');
+  const slug = file.replace(/\.md$/, '');
+  const { content, data } = matter(rawContent);
   const title = data.title as string;
-  const excert = data.excert as string;
+  const preview = data.preview as string;
   const date = new Date(data.date);
   const tags = data.tags as string[];
+  const result = (await mdToHtml(content)).toString();
+  const timeToRead = readingTimeMins(result);
 
   let errors: Record<string, any> = {};
 
@@ -19,8 +34,8 @@ export const parseFrontMatter = (data: Record<string, any>) => {
     errors.title = 'Invalid or missing title';
   }
 
-  if (!excert) {
-    errors.excert = 'Invalid or missing excert';
+  if (!preview) {
+    errors.preview = 'Invalid or missing preview';
   }
 
   if (!date || isNaN(date.getTime())) {
@@ -31,43 +46,20 @@ export const parseFrontMatter = (data: Record<string, any>) => {
     errors.tags = 'Invalid or missing tags';
   }
 
+  if (!result) {
+    errors.html = 'Issue parsing HTML';
+  }
+
   if (Object.keys(errors).length) {
     throw new Error(`Unable to parse front matter ${JSON.stringify(errors)}`);
   }
-
-  return {
-    title,
-    excert,
-    date,
-    tags,
-  };
-};
-
-export interface Post {
-  html: string;
-  timeToReadMins: number;
-  slug: string;
-  timestamp: number;
-  excert: string;
-  title: string;
-  tags: string[];
-}
-
-export const parsePost = async (file: string): Promise<Post> => {
-  const rawContent = fs.readFileSync(path.join(postsDir, file), 'utf-8');
-  const slug = file.replace(/\.md$/, '');
-  const { content, data } = matter(rawContent);
-  const { date, excert, title, tags } = parseFrontMatter(data);
-  const result = (await mdToHtml(content)).toString();
-
-  const timeToRead = readingTimeMins(result);
 
   return {
     html: result,
     timeToReadMins: timeToRead,
     slug,
     timestamp: date.getTime(),
-    excert,
+    preview,
     title,
     tags,
   };
@@ -83,12 +75,12 @@ export const getAllPostSlugs = () => {
 
 export const getPostBySlug = (slug: string) => {
   const fileName = `${slug}.md`;
-  return parsePost(fileName);
+  return parsePostFromFile(fileName);
 };
 
 export const getAllPostsSummary = async () => {
   const files = getPostsFiles();
-  const posts = await Promise.all(files.map((file) => parsePost(file)));
+  const posts = await Promise.all(files.map((file) => parsePostFromFile(file)));
 
   return posts.map((post) => omit(post, 'html'));
 };
@@ -96,7 +88,7 @@ export const getAllPostsSummary = async () => {
 export const getAllPosts = async () => {
   const files = getPostsFiles();
 
-  const posts = await Promise.all(files.map((file) => parsePost(file)));
+  const posts = await Promise.all(files.map((file) => parsePostFromFile(file)));
 
   return posts.sort((a, b) => a.timestamp - b.timestamp);
 };

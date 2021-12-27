@@ -1,12 +1,11 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { FC } from 'react';
 import { PostDetails } from '../../components/PostDetails';
 import { PostTags } from '../../components/PostTags';
-import { getAllPostSlugs, getPostBySlug, Post } from '../../lib/posts';
+import { getAllPostSlugs, getPostBySlug, Post as PostPage } from '../../lib/posts';
 import NextHead from 'next/head';
 import { NextPageWithLayout } from '../_app';
 
-export const getStaticProps: GetStaticProps<{ post: Post }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ post: PostPage }> = async ({ params }) => {
   if (!params || !params.slug) {
     return {
       notFound: true,
@@ -31,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   };
 };
 
-const Post: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+const PostPage: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   return (
     <>
       <NextHead>
@@ -58,11 +57,11 @@ const Post: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   );
 };
 
-Post.getMeta = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+PostPage.getMeta = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return {
     title: `${props.post.title} | Joseph Campuzano`,
-    description: `${props.post.excert}`,
+    description: `${props.post.preview}`,
   };
 };
 
-export default Post;
+export default PostPage;

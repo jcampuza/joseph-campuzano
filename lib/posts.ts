@@ -4,16 +4,20 @@ import path from 'path';
 import { mdToHtml } from './mdToHtml';
 import { omit } from './obj';
 import { readingTimeMins } from './readingTime';
+import { z } from 'zod';
 
-export interface Post {
-  html: string;
-  timeToReadMins: number;
-  slug: string;
-  timestamp: number;
-  preview: string;
-  title: string;
-  tags: string[];
-}
+// Runtime schema check so that build fails if something doesn't parse correctly
+const PostSchema = z.object({
+  html: z.string(),
+  timeToReadMins: z.number(),
+  slug: z.string(),
+  timestamp: z.number(),
+  preview: z.string(),
+  title: z.string(),
+  tags: z.string().array(),
+});
+
+export type Post = z.infer<typeof PostSchema>;
 
 const postsDir = path.join(process.cwd(), '_posts');
 
@@ -26,43 +30,19 @@ export const parsePostFromFile = async (file: string): Promise<Post> => {
   const date = new Date(data.date);
   const tags = data.tags as string[];
   const result = (await mdToHtml(content)).toString();
-  const timeToRead = readingTimeMins(result);
+  const timeToReadMins = readingTimeMins(result);
 
-  let errors: Record<string, any> = {};
-
-  if (!title) {
-    errors.title = 'Invalid or missing title';
-  }
-
-  if (!preview) {
-    errors.preview = 'Invalid or missing preview';
-  }
-
-  if (!date || isNaN(date.getTime())) {
-    errors.date = 'Invalid or missing date';
-  }
-
-  if (!tags || !tags.length) {
-    errors.tags = 'Invalid or missing tags';
-  }
-
-  if (!result) {
-    errors.html = 'Issue parsing HTML';
-  }
-
-  if (Object.keys(errors).length) {
-    throw new Error(`Unable to parse front matter ${JSON.stringify(errors)}`);
-  }
-
-  return {
+  const post = PostSchema.parse({
     html: result,
-    timeToReadMins: timeToRead,
+    timeToReadMins,
     slug,
     timestamp: date.getTime(),
     preview,
     title,
     tags,
-  };
+  });
+
+  return post;
 };
 
 export const getPostsFiles = () => {

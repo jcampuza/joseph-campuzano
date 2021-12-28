@@ -39,7 +39,7 @@ I decided to move out of my old apartment which was a 1 Bedroom across town to a
 
 #### I got my first tattoo
 
-I got my first tattoo just before a flight out of town the very next day. I got some strange looks on the plane with my forearm wrapped and looking very disgusting with plasma/blood everywhere. Getting a tattoo was something I had been wanting to do for a while, but it took a long time to find an idea that I would be happy with getting placed on my body. The session turned out to be less painful Ithat I was expecting which was nice and I was very happy with the result!
+I got my first tattoo just before a flight out of town the very next day. I got some strange looks on the plane with my forearm wrapped and looking very disgusting with plasma/blood everywhere. Getting a tattoo was something I had been wanting to do for a while, but it took a long time to find an idea that I would be happy with getting placed on my body. The session turned out to be less painful than I was expecting which was nice and I was very happy with the result!
 
 #### I went and "lived" in Chicago for a couple of weeks
 

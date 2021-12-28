@@ -27,7 +27,7 @@ During Texas' "snowpocalypse" which also happened to coincide with my birthday I
 
 #### Visited many coffeeshops/cafés
 
-I visited a large array of new and fun coffee shops, one of my favorite activities, and partook in many photo-ops with my partner. I've probably visited the majority of all cafés in Dallas, TX where I reside I've probably tried more than the average person who has lived in some other cities as well during my short visits!
+I visited a large array of new and fun coffee shops, one of my favorite activities, and partook in many photo-ops with my partner. I've probably visited the majority of all cafés in Dallas, TX where I reside and I've probably tried more than the average person who has lived in some other cities as well during my short visits!
 
 #### I had one of my motorcycles stolen
 

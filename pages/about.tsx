@@ -6,9 +6,6 @@ import { NextPageWithLayout } from './_app';
 const Index: NextPageWithLayout = () => {
   return (
     <>
-      <NextHead>
-        <title>About | Joseph Campuzano</title>
-      </NextHead>
       <div className="font-sans">
         <h2 className="font-mono text-2xl mb-4">About Me</h2>
         <main className="space-y-4">
@@ -40,6 +37,7 @@ const Index: NextPageWithLayout = () => {
 
 Index.getMeta = (props) => {
   return {
+    title: 'About | Joseph Campuzano',
     description: 'About Joseph Campuzano',
   };
 };

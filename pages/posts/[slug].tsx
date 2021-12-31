@@ -4,6 +4,7 @@ import { PostTags } from '../../components/PostTags';
 import { getAllPostSlugs, getPostBySlug, Post as PostPage } from '../../lib/posts';
 import NextHead from 'next/head';
 import { NextPageWithLayout } from '../_app';
+import { ProgressLayout } from '../../components/Layout';
 
 export const getStaticProps: GetStaticProps<{ post: PostPage }> = async ({ params }) => {
   if (!params || !params.slug) {
@@ -55,6 +56,10 @@ const PostPage: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
       </article>
     </>
   );
+};
+
+PostPage.getLayout = (page) => {
+  return <ProgressLayout>{page}</ProgressLayout>;
 };
 
 PostPage.getMeta = (props: InferGetStaticPropsType<typeof getStaticProps>) => {

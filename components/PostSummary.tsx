@@ -14,7 +14,7 @@ interface PostSummaryProps {
 
 export const PostSummary: FC<PostSummaryProps> = (props) => {
   return (
-    <article className="py-4 border-b border-gray-400">
+    <article className="py-8 border-b border-gray-400">
       <header className="mb-2 flex flex-col">
         <NextLink href={props.href}>
           <a className="text-lg font-semibold underline">{props.title}</a>

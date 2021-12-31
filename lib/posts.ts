@@ -62,7 +62,7 @@ export const getAllPostsSummary = async () => {
   const files = getPostsFiles();
   const posts = await Promise.all(files.map((file) => parsePostFromFile(file)));
 
-  return posts.map((post) => omit(post, 'html'));
+  return posts.map((post) => omit(post, 'html')).sort((a, b) => b.timestamp - a.timestamp);
 };
 
 export const getAllPosts = async () => {

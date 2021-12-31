@@ -1,4 +1,5 @@
 import { cn } from '../lib/cn';
+import { formatDateLong } from '../lib/date';
 import { FCWithClassName } from '../lib/types';
 
 interface PostDetailsProps {
@@ -7,7 +8,7 @@ interface PostDetailsProps {
 }
 
 export const PostDetails: FCWithClassName<PostDetailsProps> = (props) => {
-  const dateFormatted = new Date(props.timestamp).toLocaleDateString();
+  const dateFormatted = formatDateLong(props.timestamp);
 
   return (
     <aside className={cn(props.className)}>

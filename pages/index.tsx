@@ -1,5 +1,5 @@
 import { InferGetStaticPropsType } from 'next';
-import { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Layout } from '../components/Layout';
 import { PostSummary } from '../components/PostSummary';
 import { getAllPostsSummary } from '../lib/posts';
@@ -46,9 +46,6 @@ const Index: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> 
     <div className="font-sans">
       <div className="mb-8">
         <h1 className="font-mono text-2xl">Recent Posts</h1>
-        <small className="text-xs text-gray-700 italic">
-          Still a work in progress, so there might not be a lot here yet.
-        </small>
       </div>
       <main>
         <section>{renderArticlesList()}</section>

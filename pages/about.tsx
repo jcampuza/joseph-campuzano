@@ -1,4 +1,3 @@
-import NextHead from 'next/head';
 import { ReactElement } from 'react';
 import { Layout } from '../components/Layout';
 import { NextPageWithLayout } from './_app';
@@ -35,7 +34,7 @@ const Index: NextPageWithLayout = () => {
   );
 };
 
-Index.getMeta = (props) => {
+Index.getMeta = () => {
   return {
     title: 'About | Joseph Campuzano',
     description: 'About Joseph Campuzano',

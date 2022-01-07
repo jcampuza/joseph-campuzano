@@ -17,11 +17,13 @@ const PostSchema = z.object({
   tags: z.string().array(),
 });
 
-export type Post = z.infer<typeof PostSchema>;
+export type IPost = z.infer<typeof PostSchema>;
+
+export type IPostSummary = Omit<IPost, 'html'>;
 
 const postsDir = path.join(process.cwd(), '_posts');
 
-export const parsePostFromFile = async (file: string): Promise<Post> => {
+export const parsePostFromFile = async (file: string): Promise<IPost> => {
   const rawContent = fs.readFileSync(path.join(postsDir, file), 'utf-8');
   const slug = file.replace(/\.md$/, '');
   const { content, data } = matter(rawContent);
@@ -62,7 +64,9 @@ export const getAllPostsSummary = async () => {
   const files = getPostsFiles();
   const posts = await Promise.all(files.map((file) => parsePostFromFile(file)));
 
-  return posts.map((post) => omit(post, 'html')).sort((a, b) => b.timestamp - a.timestamp);
+  return posts
+    .map((post) => omit(post, 'html') as IPostSummary)
+    .sort((a, b) => b.timestamp - a.timestamp);
 };
 
 export const getAllPosts = async () => {

@@ -1,12 +1,11 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { PostDetails } from '../../components/PostDetails';
 import { PostTags } from '../../components/PostTags';
-import { getAllPostSlugs, getPostBySlug, Post as PostPage } from '../../lib/posts';
-import NextHead from 'next/head';
+import { getAllPostSlugs, getPostBySlug, IPost } from '../../lib/posts';
 import { NextPageWithLayout } from '../_app';
 import { ProgressLayout } from '../../components/Layout';
 
-export const getStaticProps: GetStaticProps<{ post: PostPage }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ post: IPost }> = async ({ params }) => {
   if (!params || !params.slug) {
     return {
       notFound: true,
@@ -33,28 +32,23 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 const PostPage: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   return (
-    <>
-      <NextHead>
-        <title>{props.post.title} | Joseph Campuzano</title>
-      </NextHead>
-      <article>
-        <header className="">
-          <h1 className="font-mono text-2xl">{props.post.title}</h1>
+    <article>
+      <header className="">
+        <h1 className="font-mono text-2xl">{props.post.title}</h1>
 
-          <PostDetails
-            className="mb-2"
-            timeToReadMins={props.post.timeToReadMins}
-            timestamp={props.post.timestamp}
-          />
+        <PostDetails
+          className="mb-2"
+          timeToReadMins={props.post.timeToReadMins}
+          timestamp={props.post.timestamp}
+        />
 
-          <PostTags tags={props.post.tags} />
-        </header>
-        <section
-          className="prose my-8"
-          dangerouslySetInnerHTML={{ __html: props.post.html }}
-        ></section>
-      </article>
-    </>
+        <PostTags tags={props.post.tags} />
+      </header>
+      <section
+        className="prose my-8"
+        dangerouslySetInnerHTML={{ __html: props.post.html }}
+      ></section>
+    </article>
   );
 };
 

@@ -5,12 +5,23 @@ export default class _Document extends Document {
     return (
       <Html className="bg-black" lang="en-US">
         <Head>
+          {/* Google Font */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
             rel="stylesheet"
           ></link>
+
+          {/* Microanalytics */}
+          <script
+            data-host="https://microanalytics.io"
+            data-dnt="false"
+            src="https://microanalytics.io/js/script.js"
+            id="ZwSg9rf6GA"
+            async
+            defer
+          ></script>
         </Head>
 
         <body className="min-h-screen bg-white">

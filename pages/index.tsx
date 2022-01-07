@@ -43,14 +43,9 @@ const Index: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> 
   };
 
   return (
-    <div className="font-sans">
-      <div className="mb-8">
-        <h1 className="font-mono text-2xl">Recent Posts</h1>
-      </div>
-      <main>
-        <section>{renderArticlesList()}</section>
-      </main>
-    </div>
+    <main className="font-sans">
+      <section>{renderArticlesList()}</section>
+    </main>
   );
 };
 
